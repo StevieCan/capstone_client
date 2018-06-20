@@ -8,9 +8,19 @@ Rails.application.routes.draw do
   post "/login" => "sessions#create"
   delete "/logout" => "sessions#destroy"
 
-  namespace :api do
-    get 'caddies' => 'caddies#index'
-    get 'caddies/new' => 'caddies#new'
+  get '/' => 'client/caddies#index'
+  namespace :client do
+    get '/caddies' => 'caddies#index'
+    get '/caddies/new' => 'caddies#new'
+    post '/caddies' => 'caddies#create'
+    get '/caddies/:id' => 'caddies#show'
+    delete '/caddies/:id' => 'caddies#destroy'
+
+    get '/golfers' => 'golfers#index'
+    get '/golfers/new' => 'golfers#new'
+    post '/golfers' => 'golfers#create'
+    get '/golfers/:id' => 'golfers#show'
+    delete '/golfers/:id' => 'golfers#destroy'
 
   end
 
