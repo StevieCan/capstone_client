@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     get '/golfers/:id' => 'golfers#show'
     delete '/golfers/:id' => 'golfers#destroy'
 
+    get '/tee_times' => 'tee_times#index'
+
   end
 
 end
