@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   # STEP 1: A ROUTE triggers a controller action
   # verb "/urls" => "namespace/controllers#action"
-  get "/signup" => "users#new"
-  post "/users" => "users#create"
+  get "/signup" => "golfers#new"
+  post "/golfers" => "golfers#create"
+  get "/signup" => "caddies#new"
+  post "/caddies" => "caddies#create"
 
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"
@@ -22,7 +24,11 @@ Rails.application.routes.draw do
     get '/golfers/:id' => 'golfers#show'
     delete '/golfers/:id' => 'golfers#destroy'
 
-    get '/tee_times' => 'tee_times#index'
+    get '/golfer_tee_times' => 'tee_times#golfer_index'
+    get '/caddy_tee_times' => 'tee_times#caddy_index'
+    get '/tee_times/:id' => 'tee_times#show'
+
+
 
   end
 

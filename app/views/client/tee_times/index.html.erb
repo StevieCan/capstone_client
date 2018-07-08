@@ -1,0 +1,48 @@
+<!-- 
+<h1>Tee Times</h1>
+<%= @tee_times.each do |tee_time| %>
+  <h1>Start Time:  <%= tee_time["start_time"] %></h1>
+  <h1>Caddy Desired:  <%= tee_time["no_caddy"] %></h1>
+  <h1>Walking or Riding:  <%= tee_time["cart"] %></h1>
+  <h1>Number of Holes:  <%= tee_time["number_of_holes"] %></h1>
+
+<% end %>
+
+<a href="/client/tee_times?sort_by=start_time&&sort_order=asc">Tee Times Available</a> -->
+<h1>Find a Tee Time</h1>
+<%= form_tag '/users', method: :post do  %>
+  <div>
+    Start Time: <select name="start_time">
+      <option value="6:10am">6:10 AM</option>
+      <option value="7:10am">7:10 AM</option>
+      <option value="8:10am">8:10 AM</option>
+      <option value="9:10am">9:10 AM</option>
+      <option value="10:10am">10:10 AM</option>
+      <option value="11:10am">11:10 AM</option>
+      <option value="12:10pm">12:10 PM</option>
+      <option value="1:10pm">1:10 PM</option>
+      <option value="2:10pm">2:10PM</option>
+      <option value="3:10pm">3:10AM</option>
+   
+    </select>
+  <div>
+    Caddy Desired: <select name="no_caddy">
+      <option value="false">I want a caddy!</option>
+      <option value="true">No caddy</option>
+
+    </select>
+  </div>
+  <div>
+    Walking or Riding: <select name="cart">
+      <option value="true">Riding</option>
+      <option value="false">Walking</option>
+    </select>  
+  </div>
+  <div>
+    Number of Holes: <select name="number_of_holes">
+      <option value=18>18 Holes</option>
+      <option value=9>9 Holes</option>
+    </select> 
+  </div>
+  <input type="submit" value="Confirm Reservation">
+<% end %>

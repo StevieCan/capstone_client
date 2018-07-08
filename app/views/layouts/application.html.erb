@@ -13,6 +13,10 @@
   <a href="/logout" data-method="delete">Log Out</a>
 
   <body>
+
+    <% flash.each do |name, message| %>
+      <p><%= message %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>

@@ -21,27 +21,25 @@ class Client::CaddiesController < ApplicationController
   end
 
   def create
-    @caddy = {
-                   'name' => params[:name],
-                   'email' => params[:email],
-                   'phone_number' => params[:phone_number],
-                   'password_digest' => params[:password_digest]
+    client_params = {
+                   name: params[:name],
+                   email: params[:email],
+                   phone_number: params[:phone_number],
+                   password: params[:password],
+                   password_confirmation: params[:password_confirmation]
                   }
-
     response = Unirest.post(
-                            "http://localhost:3000/api/caddies",
-                            parameters: @caddy
+                            "http://localhost:3000/caddies",
+                            parameters: client_params
                             )
-
+    
     if response.code == 200
-      flash[:success] = "Successfully created Caddy"
-      redirect_to "/client/caddies/"
-    elsif response.code == 401
-      flash[:warning] = "You are not Authorized to add a caddy"
-      redirect_to "/"
+      session[:user_id] = response.body["id"]
+      flash[:success] = 'Successfully created account!'
+      redirect_to '/'
     else
-      @errors = response.body["errors"]
-      render 'new.html.erb'
+      flash[:warning] = 'Invalid email or password!'
+      redirect_to '/signup'
     end
   end
 
