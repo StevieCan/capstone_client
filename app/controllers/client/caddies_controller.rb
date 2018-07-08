@@ -15,6 +15,7 @@ class Client::CaddiesController < ApplicationController
     render 'index.html.erb'
   end
 
+
   def new
     @caddy = {}
     render 'new.html.erb'
@@ -42,6 +43,7 @@ class Client::CaddiesController < ApplicationController
       redirect_to '/signup'
     end
   end
+
 
   def show
     caddy_id = params[:id]
