@@ -7,7 +7,7 @@ class Client::GolfersController < ApplicationController
                     category: params[:category]
                     }
     response = Unirest.get(
-                          "http://localhost:3000/api/golfers",
+                          "http://localhost:3000/golfers",
                           parameters: client_params
                           )
     @golfers = response.body
@@ -22,29 +22,28 @@ class Client::GolfersController < ApplicationController
 
   def create
     client_params = {
-                      auth: {
-                              name: params[:name],
-                              member_number: params[:member_number],
-                              email: params[:email],
-                              password: params[:password],
-                              password_confirmation: params[:password_confirmation]
-                            }  
+                      name: params[:name],
+                      member_number: params[:member_number],
+                      email: params[:email],
+                      password: params[:password],
+                      password_confirmation: params[:password_confirmation]
                     }
 
     response = Unirest.post(
-                            "http://localhost:3000/golfer_token", 
+                            "http://localhost:3000/api/golfers", 
                             parameters: client_params
                             )
     
-    if response.code == 201
-      session[:jwt] = response.body["jwt"]
-      flash[:success] = 'Successfully logged in!'
-      redirect_to '/'
+    if response.code == 200
+      session[:golfer_id] = response.body["id"]
+      flash[:success] = 'Successfully created account!'
+      redirect_to '/golfer_login'
     else
       flash[:warning] = 'Invalid email or password!'
-      redirect_to '/login'
+      redirect_to '/client/golfer_signup'
     end
   end
+
 
   def show
     golfer_id = params[:id]

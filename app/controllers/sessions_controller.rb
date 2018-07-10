@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
   def golfer_new
+    @golfer = {}
     render 'golfer_new.html.erb'
   end
 
   def caddy_new
+    @caddy = {}
     render 'caddy_new.html.erb'
   end
 
@@ -23,7 +25,7 @@ class SessionsController < ApplicationController
     if response.code == 201
       session[:jwt] = response.body["jwt"]
       flash[:success] = 'Successfully logged in!'
-      redirect_to '/'
+      redirect_to '/client/golfers'
     else
       flash[:warning] = 'Invalid email or password!'
       redirect_to '/golfer_login'
@@ -46,7 +48,7 @@ class SessionsController < ApplicationController
     if response.code == 201
       session[:jwt] = response.body["jwt"]
       flash[:success] = 'Successfully logged in!'
-      redirect_to '/'
+      redirect_to '/client/caddies'
     else
       flash[:warning] = 'Invalid email or password!'
       redirect_to '/caddy_login'

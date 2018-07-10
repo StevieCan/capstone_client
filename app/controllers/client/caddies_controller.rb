@@ -26,21 +26,23 @@ class Client::CaddiesController < ApplicationController
                    name: params[:name],
                    email: params[:email],
                    phone_number: params[:phone_number],
+                   username: params[:username],
+                   ranking: params[:ranking],
                    password: params[:password],
                    password_confirmation: params[:password_confirmation]
                   }
     response = Unirest.post(
-                            "http://localhost:3000/caddies",
+                            "http://localhost:3000/api/caddies",
                             parameters: client_params
                             )
     
     if response.code == 200
-      session[:user_id] = response.body["id"]
+      session[:caddy_id] = response.body["id"]
       flash[:success] = 'Successfully created account!'
-      redirect_to '/'
+      redirect_to '/caddy_login'
     else
       flash[:warning] = 'Invalid email or password!'
-      redirect_to '/signup'
+      redirect_to '/client/caddy_signup'
     end
   end
 

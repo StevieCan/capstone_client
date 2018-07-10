@@ -1,5 +1,5 @@
-<h1>Signup!</h1>
-<%= form_tag '/users', method: :post do  %>
+<h1>Caddy Signup!</h1>
+<%= form_tag '/client/caddy_signup', method: :post do  %>
   <div>
     Name: <input type="text" name="name">
   </div>
@@ -8,6 +8,12 @@
   </div>
   <div>
     Phone Number: <input type="phone_number" name="phone_number">
+  </div>
+  <div>
+    Username: <input type="username" name="username">
+  </div>
+  <div>
+    Ranking: <input type="ranking" name="ranking">
   </div>
   <div>
     Password: <input type="password" name="password">

@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  # STEP 1: A ROUTE triggers a controller action
-  # verb "/urls" => "namespace/controllers#action"
-  get "/golfer_signup" => "golfers#golfer_new"
-  post "/golfers" => "golfers#create"
-  get "/caddy_signup" => "caddies#caddy_new"
-  post "/caddies" => "caddies#create"
+  
+  get "/client/golfer_signup" => "client/golfers#new"
+  post "/client/golfer_signup" => "client/golfers#create"
+  get "/client/caddy_signup" => "client/caddies#new"
+  post "/client/caddy_signup" => "client/caddies#create"
 
   get "/golfer_login" => "sessions#golfer_new"
   post "/golfer_login" => "sessions#golfer_create"
