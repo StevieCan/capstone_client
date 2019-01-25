@@ -8,7 +8,7 @@ class Client::CaddiesController < ApplicationController
                      category: params[:category]
                     }
     response = Unirest.get(
-                           "http://localhost:3000/api/caddies",
+                           "http://localhost:3000/caddies",
                            parameters: client_params
                            )
     @caddies = response.body
